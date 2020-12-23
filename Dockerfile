@@ -1,12 +1,12 @@
-FROM cirrusci/flutter
-LABEL name="fluid_flutter"
-RUN wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
-WORKDIR /root
+FROM hzgood/nvm-flutter
+LABEL name="fluid_server"
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN bash -c 'source $HOME/.nvm/nvm.sh   && \
 wget -qO- https://raw.githubusercontent.com/microsoft/FluidFramework/main/.nvmrc>.nvmrc &&\
 nvm install &&\
 nvm use'
 WORKDIR /home
-RUN git clone https://github.com/microsoft/FluidHelloWorld.git
-WORKDIR /home/FluidHelloWorld
+RUN git clone https://github.com/huang12zheng/fluid_model.git workspace
+WORKDIR /home/workspace
 RUN bash -c 'source $HOME/.nvm/nvm.sh && npm install'
