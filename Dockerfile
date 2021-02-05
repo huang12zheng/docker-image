@@ -1,6 +1,6 @@
-FROM node:14.15.4-alpine
-RUN mkdir /root/workspace
-WORKDIR /root/workspace
-COPY package.json .
-RUN npm install
-CMD ["sleep 3000"]
+FROM hzgood/prisma-base
+
+COPY prisma .
+RUN npm run gen
+
+ENTRYPOINT ["npm","run dev"]
